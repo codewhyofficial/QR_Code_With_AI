@@ -95,6 +95,9 @@ function downloadQR() {
       <h1>Upload Circular Image</h1>
       <CircularImageUploader />
     </div> */}
+    <div className="text-center">
+      <p>This Website is under development for some of the crazy features. Report us if you face any issue with the current version.</p>
+    </div>
 
       <div className="bg-slate-900 text-white min-h-screen pb-10">
         <div className="text-center md:text-6xl text-5xl pt-20">
