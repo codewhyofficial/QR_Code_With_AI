@@ -47,85 +47,73 @@ export default function App() {
     });
 
     qrcode.append(element);
-}
-
-
-function downloadQR() {
-  var qrCodeElement = document.getElementById("qrcode");
-
-  // Create a temporary canvas element
-  var canvas = document.createElement("canvas");
-  var context = canvas.getContext("2d");
-
-  // Set canvas dimensions to match the QR code element
-  canvas.width = qrCodeElement.offsetWidth;
-  canvas.height = qrCodeElement.offsetHeight;
-
-  // Convert the QR code SVG to a PNG image
-  var svgString = new XMLSerializer().serializeToString(qrCodeElement.firstChild);
-  var img = new Image();
-  img.onload = function() {
+  }
+  function downloadQR() {
+    var qrCodeElement = document.getElementById("qrcode");
+    // Create a temporary canvas element
+    var canvas = document.createElement("canvas");
+    var context = canvas.getContext("2d");
+    // Set canvas dimensions to match the QR code element
+    canvas.width = qrCodeElement.offsetWidth;
+    canvas.height = qrCodeElement.offsetHeight;
+    // Convert the QR code SVG to a PNG image
+    var svgString = new XMLSerializer().serializeToString(
+      qrCodeElement.firstChild
+    );
+    var img = new Image();
+    img.onload = function () {
       // Draw the image onto the canvas
       context.drawImage(img, 0, 0, canvas.width, canvas.height);
-
       // Convert canvas to PNG image data
       var pngData = canvas.toDataURL("image/png");
-
       // Create download link
       var downloadLink = document.createElement("a");
       downloadLink.href = pngData;
       downloadLink.download = "image.png";
-
       // Trigger download
       downloadLink.click();
-  };
-  img.src = "data:image/svg+xml;base64," + btoa(svgString);
-}
+    };
+    img.src = "data:image/svg+xml;base64," + btoa(svgString);
+  }
 
-
-  // generateQRCode();
-
+  
   return (
-    // <h1 className="text-3xl font-bold underline">
-    //   Hello world!
-    // </h1>
-
     <>
       {/* <div>
       <h1>Upload Circular Image</h1>
       <CircularImageUploader />
     </div> */}
-    <div className="text-center">
-      <p>This Website is under development for some of the crazy features. Report us if you face any issue with the current version.</p>
-    </div>
-
+      <div className="text-center">
+        <p>
+          This Website is under development for some of the crazy features.
+          Report us if you face any issue with the current version.
+        </p>
+      </div>
       <div className="bg-slate-900 text-white min-h-screen pb-10">
         <div className="text-center md:text-6xl text-5xl pt-20">
           QR Generator
         </div>
-
-
         <div className="flex justify-center ">
-        <input
-          type="color"
-          value={qrColor}
-          onChange={handleColorChange}
-          className="mt-4 mr-2 rounded "
-        />
-        <select
-          value={qrType}
-          onChange={handleQrType}
-          className="mt-4 text-black rounded "
-        >
-          <option value="square">Square</option>
-          <option value="rounded">Rounded</option>
-          <option value="dots">Dots</option>
-          <option value="classy">Classy</option>
-          <option value="classy-rounded">Classy Rounded</option>
-          <option value="extra-rounded">Extra Rounded</option>
-        </select>
-                  </div>
-        
+          <input
+            type="color"
+            value={qrColor}
+            onChange={handleColorChange}
+            className="mt-4 mr-2 rounded "
+          />
+          <select
+            value={qrType}
+            onChange={handleQrType}
+            className="mt-4 text-black rounded "
+          >
+            <option value="square">Square</option>
+            <option value="rounded">Rounded</option>
+            <option value="dots">Dots</option>
+            <option value="classy">Classy</option>
+            <option value="classy-rounded">Classy Rounded</option>
+            <option value="extra-rounded">Extra Rounded</option>
+          </select>
+        </div>
+
         <div className="flex justify-center pt-10">
           <div className="bg-[#FF5C5C] h-[50px] w-[180px] rounded-[10px] m-1 md:w-[250px] md:h-[70px] text-center">
             <div class="flex items-center justify-center h-full">
@@ -138,7 +126,6 @@ function downloadQR() {
             </div>
           </div>
         </div>
-
         <div className="md:flex md:flex-row items-end justify-center pt-1 mx-20 hidden">
           {/* function to generate the qr code  */}
           <div
@@ -146,6 +133,8 @@ function downloadQR() {
             onClick={generateQRCode}
             id="generateButton"
           >
+
+
             <div className="flex items-center justify-center h-full">
               <p className="text-center text-xl md:text-2xl">Generate</p>
             </div>
@@ -169,7 +158,6 @@ function downloadQR() {
           </div>{" "}
         </div>
         {/* ends here  */}
-
         <div className="flex flex-row items-end justify-center pt-1 md:hidden">
           <div className="bg-[#FF5C5C] h-[67px] w-[368px] rounded-[10px] md:w-[865px] md:h-[120px] text-center">
             <div class="flex items-center justify-center h-full">
@@ -179,11 +167,9 @@ function downloadQR() {
             </div>
           </div>
         </div>
-
         {/* starts here  */}
-
         <div className="flex flex-col items-center justify center m-2 md:flex-row md:mx-20">
-        <div className="bg-white md:w-full w-[368px] h-[320px] m-1 rounded-lg text-center ">
+          <div className="bg-white md:w-full w-[368px] h-[320px] m-1 rounded-lg text-center ">
             <div className="flex items-center justify-center h-full">
               <textarea
                 className="text-black h-full w-full p-2 rounded-lg focus:outline-none overflow:hidden resize-none "
@@ -206,7 +192,6 @@ function downloadQR() {
             </div>
           </div>
 
-          
           <div className="bg-white md:w-full w-[368px] h-[320px] m-1 rounded-lg text-center">
             <div class="flex items-center justify-center h-full">
               <div
@@ -220,21 +205,17 @@ function downloadQR() {
           </div>
 
           <div className="flex flex-row items-end justify-center pt-1 md:hidden">
-          <div className="bg-[#FF5C5C] h-[67px] w-[368px] rounded-[10px] md:w-[865px] md:h-[120px] text-center">
-            <div
-              class="flex items-center justify-center h-full"
-              onClick={downloadQR}
-            >
-              <p class="text-center text-xl md:text-3xl">Download</p>
+            <div className="bg-[#FF5C5C] h-[67px] w-[368px] rounded-[10px] md:w-[865px] md:h-[120px] text-center">
+              <div
+                class="flex items-center justify-center h-full"
+                onClick={downloadQR}
+              >
+                <p class="text-center text-xl md:text-3xl">Download</p>
+              </div>
             </div>
           </div>
         </div>
-
-
-        </div>
-
         {/* ends here  */}
-
       </div>
     </>
   );
